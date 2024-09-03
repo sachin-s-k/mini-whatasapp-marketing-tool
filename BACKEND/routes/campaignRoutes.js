@@ -1,7 +1,13 @@
 import express from "express";
+import { upload } from "../milddlewares/multer.js";
+import {
+  createCampaign,
+  uploadContact,
+} from "../controllers/campaignController.js";
 
-const campaignRoutes = express.Router();
+const routes = express.Router();
 
-campaignRoutes.post("/");
+routes.post("/", createCampaign);
+routes.post("/upload-contacts", upload.single("contacts"), uploadContact);
 
-export default campaignRoutes;
+export default routes;
